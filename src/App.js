@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallBack from "./ErrorFallBack.js";
+import "./App.css";
+import CardGame from "./CardGame";
+import { CardBackProvider } from "./CardBackContext.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary FallbackComponent={ErrorFallBack}>
+      <div className="App">
+        <CardBackProvider>
+          <CardGame />
+        </CardBackProvider>
+        <br />
+        <h1 className="Title">Memóriajáték</h1>
+      </div>
+    </ErrorBoundary>
   );
 }
 
